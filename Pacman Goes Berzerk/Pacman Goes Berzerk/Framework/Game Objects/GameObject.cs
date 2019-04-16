@@ -7,7 +7,7 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 
 namespace Final_Project_Resources_2
 {
-    abstract public class GameObject : IDrawable, ICollisionEventHandler
+    abstract public class GameObject : IDrawable, IUpdateable, ICollisionEventHandler
     {
 
         //The game object's name

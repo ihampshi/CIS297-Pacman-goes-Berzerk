@@ -17,6 +17,16 @@ namespace Pacman_Goes_Berzerk.Game
         {
         }
 
+        //When the game object is updated
+        public override void Update(double deltaTime)
+        {
+
+            //Adjust velocity
+            Velocity.x = 100;
+
+            base.Update(deltaTime);
+        }
+
         //When a collision occurs
         public override void OnCollision(ICollisionEventHandler otherCollisionHandler, ICollider otherCollider)
         {
