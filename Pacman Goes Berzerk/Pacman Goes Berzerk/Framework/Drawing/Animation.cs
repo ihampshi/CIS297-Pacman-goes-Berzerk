@@ -65,6 +65,9 @@ namespace Pacman_Goes_Berzerk.Framework.Drawing
             if (playing)
             {
 
+                //Add to the elapsed time
+                elapsed += deltaTime;
+
                 //Whenever the elapsed time is above the length required to switch to the next frame
                 while (elapsed > frameLength)
                 {
@@ -83,7 +86,7 @@ namespace Pacman_Goes_Berzerk.Framework.Drawing
         {
 
             //If not at the end of the animation
-            if (currentFrame < frames.Count)
+            if (currentFrame < frames.Count-1)
             {
 
                 //Increase the current frame index

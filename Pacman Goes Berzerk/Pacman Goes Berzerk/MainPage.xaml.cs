@@ -37,7 +37,10 @@ namespace Pacman_Goes_Berzerk
 
         //The image paths and resource names
         List<Tuple<string, string>> projectImages = new List<Tuple<string, string>>() {
-            new Tuple<string, string> ("box", "Assets/LockScreenLogo.scale-200.png" ), };
+            new Tuple<string, string> ("box", "Assets/LockScreenLogo.scale-200.png" ),
+            new Tuple<string, string> ("box2", "Assets/SplashScreen.scale-200.png" ),
+            new Tuple<string, string> ("box3", "Assets/StoreLogo.png" ),
+            new Tuple<string, string> ("box4", "Assets/Wide310x150Logo.scale-200.png" ),};
 
         //Game subsystems
         DrawableIndex drawIndex;

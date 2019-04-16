@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Pacman_Goes_Berzerk.Framework;
 
 namespace Final_Project_Resources_2
 {

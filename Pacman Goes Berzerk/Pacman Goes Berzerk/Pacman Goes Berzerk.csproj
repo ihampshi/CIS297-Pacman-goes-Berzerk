@@ -98,12 +98,14 @@
     <Compile Include="Framework\Colliders\DrawableColliders.cs" />
     <Compile Include="Framework\Colliders\ICollider.cs" />
     <Compile Include="Framework\Colliders\ICollisionEventHandler.cs" />
+    <Compile Include="Framework\Drawing\Animation.cs" />
     <Compile Include="Framework\Drawing\DrawableImage.cs" />
     <Compile Include="Framework\Drawing\DrawInfo.cs" />
     <Compile Include="Framework\Drawing\DrawingPositionModifier.cs" />
     <Compile Include="Framework\Drawing\IDrawable.cs" />
     <Compile Include="Framework\Game Objects\GameObject.cs" />
     <Compile Include="Framework\Game Objects\SpriteGameObject.cs" />
+    <Compile Include="Framework\IUpdateable.cs" />
     <Compile Include="Framework\Systems\CollisionManager.cs" />
     <Compile Include="Framework\Systems\DrawableIndex.cs" />
     <Compile Include="Framework\Systems\GameObjectIndex.cs" />
@@ -148,6 +150,9 @@
     <PackageReference Include="Win2D.uwp">
       <Version>1.22.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Images\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
