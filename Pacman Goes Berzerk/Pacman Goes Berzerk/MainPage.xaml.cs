@@ -2,6 +2,7 @@
 using Final_Project_Resources_2.Framework.Systems;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Pacman_Goes_Berzerk.Framework.Input;
 using Pacman_Goes_Berzerk.Game;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -46,6 +49,7 @@ namespace Pacman_Goes_Berzerk
         DrawableIndex drawIndex;
         CollisionManager collisions;
         GameObjectIndex gameObjects;
+        InputManager inputManager;
 
         public MainPage()
         {
@@ -63,22 +67,37 @@ namespace Pacman_Goes_Berzerk
             drawIndex = new DrawableIndex();
             collisions = new CollisionManager();
             gameObjects = new GameObjectIndex(drawIndex, collisions);
+            inputManager = new InputManager();
 
             //Load the required images
             ImageManager.LoadImages(projectImages);
 
+            //Register key event listeners
+            Window.Current.CoreWindow.KeyDown += canvas_KeyDown;
+            Window.Current.CoreWindow.KeyUp += canvas_KeyUp;
+
+
+
 
             //Create a dummy game object
-            DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(50, 50));
-
-            //Set the object's image
-            testingObject.Image = ImageManager.getImageByName("box");
+            DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45));
 
             //Register the new object in the game object index
             gameObjects.registerGameObject(testingObject);
 
+            //Register the new object as an input listener
+            inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
+
             //Enable debug drawing
             drawIndex.SetDebugDrawing(true);
+
+            //Add a wall
+            WallGameObject wall = new WallGameObject(new Vector2(100, 100), new Vector2(150, 200));
+            gameObjects.registerGameObject(wall);
+            WallGameObject wall2 = new WallGameObject(new Vector2(150, 200), new Vector2(350, 250));
+            gameObjects.registerGameObject(wall2);
+            WallGameObject wall3 = new WallGameObject(new Vector2(300, 100), new Vector2(350, 250));
+            gameObjects.registerGameObject(wall3);
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
@@ -97,7 +116,21 @@ namespace Pacman_Goes_Berzerk
             //Draw all elements within the draw list
             drawIndex.Draw(sender, args);
 
-            args.DrawingSession.DrawText("Not much is here yet, but there's a fair amount of code beneath.", new System.Numerics.Vector2(0, 0), Colors.Black);
+            args.DrawingSession.DrawText("Not much is here yet, but there's a fair amount of code beneath.", new System.Numerics.Vector2(0, 0), Colors.Yellow);
+        }
+
+        private void canvas_KeyDown(CoreWindow sender, KeyEventArgs e)
+        {
+
+            //Notify the input manager
+            inputManager.OnKeyDown(sender, e.VirtualKey);
+        }
+
+        private void canvas_KeyUp(CoreWindow sender, KeyEventArgs e)
+        {
+
+            //Notify the input manager
+            inputManager.OnKeyUp(sender, e.VirtualKey);
         }
     }
 }

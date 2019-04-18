@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Framework\CardinalDirection.cs" />
     <Compile Include="Framework\Colliders\DrawableColliders.cs" />
     <Compile Include="Framework\Colliders\ICollider.cs" />
     <Compile Include="Framework\Colliders\ICollisionEventHandler.cs" />
@@ -105,6 +106,11 @@
     <Compile Include="Framework\Drawing\IDrawable.cs" />
     <Compile Include="Framework\Game Objects\GameObject.cs" />
     <Compile Include="Framework\Game Objects\SpriteGameObject.cs" />
+    <Compile Include="Framework\Systems\InputManager.cs" />
+    <Compile Include="Framework\Input\KeyboardEventListener.cs" />
+    <Compile Include="Framework\Input\KeyboardInputSource.cs" />
+    <Compile Include="Framework\Input\PlayerInputListener.cs" />
+    <Compile Include="Framework\Input\PlayerKeyboardInputSource.cs" />
     <Compile Include="Framework\IUpdateable.cs" />
     <Compile Include="Framework\Systems\CollisionManager.cs" />
     <Compile Include="Framework\Systems\DrawableIndex.cs" />
@@ -112,6 +118,7 @@
     <Compile Include="Framework\Systems\ImageManager.cs" />
     <Compile Include="Framework\Vector2.cs" />
     <Compile Include="Game\DummyGameObject.cs" />
+    <Compile Include="Game\WallGameObject.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Images\" />
+    <Folder Include="Assets\Sounds\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
