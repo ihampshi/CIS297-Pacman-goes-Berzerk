@@ -117,8 +117,11 @@
     <Compile Include="Framework\Systems\GameObjectIndex.cs" />
     <Compile Include="Framework\Systems\ImageManager.cs" />
     <Compile Include="Framework\Vector2.cs" />
-    <Compile Include="Game\DummyGameObject.cs" />
-    <Compile Include="Game\WallGameObject.cs" />
+    <Compile Include="Game\Game objects\DummyGameObject.cs" />
+    <Compile Include="Game\Game objects\GameObjectHelper.cs" />
+    <Compile Include="Game\Game objects\PlayerGameObject.cs" />
+    <Compile Include="Game\Game objects\WallGameObject.cs" />
+    <Compile Include="Game\PacmanImagePaths.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,20 @@
     <None Include="Pacman Goes Berzerk_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\PacmanSpriteClosed.png" />
+    <Content Include="Assets\Images\PacmanSpriteHalfOpenDown.png" />
+    <Content Include="Assets\Images\PacmanSpriteHalfOpenLeft.png" />
+    <Content Include="Assets\Images\PacmanSpriteHalfOpenRight.png" />
+    <Content Include="Assets\Images\PacmanSpriteHalfOpenUp.png" />
+    <Content Include="Assets\Images\PacmanSpriteOpenDown.png" />
+    <Content Include="Assets\Images\PacmanSpriteOpenLeft.png" />
+    <Content Include="Assets\Images\PacmanSpriteOpenRight.png" />
+    <Content Include="Assets\Images\PacmanSpriteOpenUp.png" />
+    <Content Include="Assets\Images\RedBullet.png" />
+    <Content Include="Assets\Images\RedGhostDownSprite.png" />
+    <Content Include="Assets\Images\RedGhostLeftSprite.png" />
+    <Content Include="Assets\Images\RedGhostRightSprite.png" />
+    <Content Include="Assets\Images\RedGhostUpSprite.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -159,7 +176,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Sounds\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

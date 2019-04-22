@@ -4,6 +4,7 @@ using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Pacman_Goes_Berzerk.Framework.Input;
 using Pacman_Goes_Berzerk.Game;
+using Pacman_Goes_Berzerk.Game.Game_objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,18 +39,14 @@ namespace Pacman_Goes_Berzerk
         //The amount of time to update all objects each frame, in milliseconds
         const double MILLISECONDS_PER_FRAME = 1000.0 / FPS;
 
-        //The image paths and resource names
-        List<Tuple<string, string>> projectImages = new List<Tuple<string, string>>() {
-            new Tuple<string, string> ("box", "Assets/LockScreenLogo.scale-200.png" ),
-            new Tuple<string, string> ("box2", "Assets/SplashScreen.scale-200.png" ),
-            new Tuple<string, string> ("box3", "Assets/StoreLogo.png" ),
-            new Tuple<string, string> ("box4", "Assets/Wide310x150Logo.scale-200.png" ),};
-
         //Game subsystems
         DrawableIndex drawIndex;
         CollisionManager collisions;
         GameObjectIndex gameObjects;
         InputManager inputManager;
+
+        //The player object
+        PlayerGameObject player;
 
         public MainPage()
         {
@@ -70,17 +67,21 @@ namespace Pacman_Goes_Berzerk
             inputManager = new InputManager();
 
             //Load the required images
-            ImageManager.LoadImages(projectImages);
+            ImageManager.LoadImages(PacmanImagePaths.Images);
 
             //Register key event listeners
             Window.Current.CoreWindow.KeyDown += canvas_KeyDown;
             Window.Current.CoreWindow.KeyUp += canvas_KeyUp;
 
 
+            //Create a player
+            player = new PlayerGameObject(new Vector2(200, 300), gameObjects);
+            gameObjects.registerGameObject(player);
+            inputManager.registerInputSource(new PlayerKeyboardInputSource(player, KeyboardFormat.WASD));
 
 
             //Create a dummy game object
-            DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45));
+            DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45), gameObjects);
 
             //Register the new object in the game object index
             gameObjects.registerGameObject(testingObject);
@@ -96,7 +97,7 @@ namespace Pacman_Goes_Berzerk
             gameObjects.registerGameObject(wall);
             WallGameObject wall2 = new WallGameObject(new Vector2(150, 200), new Vector2(350, 250));
             gameObjects.registerGameObject(wall2);
-            WallGameObject wall3 = new WallGameObject(new Vector2(300, 100), new Vector2(350, 250));
+            WallGameObject wall3 = new WallGameObject(new Vector2(300, 100), new Vector2(350, 200));
             gameObjects.registerGameObject(wall3);
         }
 
@@ -108,6 +109,11 @@ namespace Pacman_Goes_Berzerk
 
             //Update game objects
             gameObjects.Update(MILLISECONDS_PER_FRAME);
+
+            if (new Random().Next(1, 10000) < 100)
+            {
+                gameObjects.removeGameObject(player);
+            }
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)

@@ -35,5 +35,10 @@ namespace Pacman_Goes_Berzerk.Game
         {
             
         }
+
+        //When the object should be removed
+        public override void Destroy()
+        {
+        }
     }
 }
