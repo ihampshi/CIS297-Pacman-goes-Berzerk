@@ -37,9 +37,15 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         //The speed that the enemy can move at (in pixels per second)
         private static double MOVEMENT_SPEED = 50;
 
+        //The percent chance of performing a random action
+        private static int RANDOM_ACTION_PERCENT = 50;
+
         //The number of milliseconds that the AI can perform a given action
         private static int MINIMUM_ACTION_TIME = 1000;
         private static int MAXIMUM_ACTION_TIME = 2000;
+
+        //The object to target
+        public SpriteGameObject Target { get; set; }
 
         //The AI's random number generator
         Random randomNumbers;
@@ -143,6 +149,9 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         {
             base.Update(deltaTime);
 
+            //Check reference
+            CheckTargetReference();
+
             //Decrease action timer
             actionTimer -= deltaTime;
 
@@ -172,7 +181,6 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             currentAnimation = animations[direction.ToInt()];
         }
 
-
         //Plays the animations
         private void PlayAnimations()
         {
@@ -193,8 +201,33 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             leftAnimation.Pause();
         }
 
-        //Picks a random action
+        //Picks an action, sometimes random, sometimes directed
         private void PickAction()
+        {
+
+            //Determine whether to perform a random action or a directed movement
+            if (Target != null && randomNumbers.Next(1, 101) > RANDOM_ACTION_PERCENT)
+            {
+
+                //Get the direction towards the target
+                CardinalDirection targetDirection = GetTargetDirection();
+
+                //Move towards the target
+                Move(targetDirection);
+
+                //Restart the action timer
+                ResetActionTimer();
+
+            } else
+            {
+
+                //Pick a random action
+                PickRandomAction();
+            }
+        }
+
+        //Picks a random action
+        private void PickRandomAction()
         {
 
             //Pick a random action (moving or idling)
@@ -263,6 +296,71 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             actionTimer = randomNumbers.Next(MINIMUM_ACTION_TIME, MAXIMUM_ACTION_TIME + 1);
         }
 
+        //Resets the target reference if the target is destroyed
+        private void CheckTargetReference()
+        {
+
+            //If target is destroyed
+            if (!Target.Alive)
+            {
+
+                //Remove the target reference
+                Target = null;
+            }
+        }
+
+        //Returns the direction towards the target, if the target exists
+        private CardinalDirection GetTargetDirection()
+        {
+
+            //The direction towards the target
+            CardinalDirection targetDirection = null;
+
+            //If the target is not null
+            if (Target != null)
+            {
+
+                //Get the difference in position between this object and the target object
+                Vector2 difference = Target.Position - Position;
+
+                //If the horizontal axis has a larger distance
+                if (Math.Abs(difference.x) > Math.Abs(difference.y))
+                {
+
+                    //If the horizontal difference is non-negative
+                    if (difference.x >= 0)
+                    {
+
+                        //Mark direction as east
+                        targetDirection = CardinalDirection.EAST;
+                    } else
+                    {
+
+                        //Mark direction as west
+                        targetDirection = CardinalDirection.WEST;
+                    }
+                } else
+                {
+
+                    //If the vertical difference is non-negative
+                    if (difference.y >= 0)
+                    {
+
+                        //Mark the direction as south
+                        targetDirection = CardinalDirection.SOUTH;
+                    } else
+                    {
+
+                        //Mark the direction as north
+                        targetDirection = CardinalDirection.NORTH;
+                    }
+                }
+            }
+
+            //Return the direction towards the target
+            return targetDirection;
+        }
+
         //On collision
         public override void OnCollision(ICollisionEventHandler otherCollisionHandler, ICollider otherCollider)
         {
@@ -283,9 +381,8 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
                 //Move out of it's range
                 GameObjectHelper.resolveRectangularCollision(this, wallBoxCollider);
 
-                //Switch to idle state
-                Idle();
-                ResetActionTimer();
+                //Choose another action
+                PickRandomAction();
             }
 
             //If the other object is a bullet

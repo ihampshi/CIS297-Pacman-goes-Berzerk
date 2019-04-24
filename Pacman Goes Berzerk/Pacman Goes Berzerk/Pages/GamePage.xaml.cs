@@ -104,6 +104,7 @@ namespace Pacman_Goes_Berzerk
 
             //Add an enemy object
             EnemyGameObject enemy = new EnemyGameObject(new Vector2(300, 300), gameObjects, new Random());
+            enemy.Target = player;
             gameObjects.registerGameObject(enemy);
         }
 

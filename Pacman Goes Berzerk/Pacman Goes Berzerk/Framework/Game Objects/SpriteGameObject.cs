@@ -24,6 +24,9 @@ namespace Final_Project_Resources_2
 
         public GameObjectIndex Container { get { return container; } set { container = value; } }
 
+        //Whether the game object is alive
+        public bool Alive { get; private set; }
+
         //Constructor
         public SpriteGameObject(Vector2 position, Collider collider, GameObjectIndex container) : base(position, collider)
         {
@@ -33,6 +36,9 @@ namespace Final_Project_Resources_2
 
             //Initialize drawable image
             drawableImage = new DrawableImage(null, position, true);
+
+            //Mark as alive
+            Alive = true;
         }
 
         //Draws this game object
@@ -68,6 +74,9 @@ namespace Final_Project_Resources_2
 
             //Remove the player from the game object index
             container.removeGameObject(this);
+
+            //Mark as destroyed
+            Alive = false;
         }
     }
 }
