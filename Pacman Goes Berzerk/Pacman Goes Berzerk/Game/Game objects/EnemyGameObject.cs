@@ -11,14 +11,35 @@ using System.Threading.Tasks;
 
 namespace Pacman_Goes_Berzerk.Game.Game_objects
 {
-    class EnemyGameObject : SpriteGameObject
+
+    //A simple enemy object
+    public class EnemyGameObject : SpriteGameObject
     {
 
+        
+        //The possible enemy states
+        public enum ENEMY_STATE
+        {
+            IDLE = 0,
+            MOVING_UP = 1,
+            MOVING_RIGHT = 2,
+            MOVING_DOWN = 3,
+            MOVING_LEFT = 4,
+            DYING = 5
+        }
+        
         //The size of the enemy collider
         private static Vector2 ENEMY_SIZE = new Vector2(50, 50);
 
         //The length of the animations (in milliseconds)
         private static double ANIMATION_LENGTH = 400.0;
+
+        //The speed that the enemy can move at (in pixels per second)
+        private static double MOVEMENT_SPEED = 50;
+
+        //The number of milliseconds that the AI can perform a given action
+        private static int MINIMUM_ACTION_TIME = 1000;
+        private static int MAXIMUM_ACTION_TIME = 2000;
 
         //The AI's random number generator
         Random randomNumbers;
@@ -49,6 +70,12 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
                 }
             }
         }
+
+        //The enemy state
+        ENEMY_STATE state;
+
+        //The random action timer
+        double actionTimer;
 
         //Constructor
         public EnemyGameObject(Vector2 position, GameObjectIndex objectIndex, Random randomNumbers) : base(position, new BoxCollider(position, ENEMY_SIZE), objectIndex)
@@ -103,12 +130,29 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
 
             //Pick the matching animation
             OnDirectionChange();
+
+            //Initialize state
+            state = ENEMY_STATE.IDLE;
+
+            //Set the action timer
+            ResetActionTimer();
         }
 
         //Each game update
         public override void Update(double deltaTime)
         {
             base.Update(deltaTime);
+
+            //Decrease action timer
+            actionTimer -= deltaTime;
+
+            //If the timer has ended
+            if (actionTimer <= 0.0)
+            {
+
+                //Pick the next action
+                PickAction();
+            }
 
             //Update the animations
             upAnimation.Update(deltaTime);
@@ -118,11 +162,6 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
 
             //Update the image
             Image = currentAnimation.GetCurrentFrame();
-
-            if (randomNumbers.Next(1, 101) > 99)
-            {
-                Direction = new CardinalDirection(randomNumbers.Next(0, 4));
-            }
         }
 
         //When the direction changes
@@ -152,6 +191,76 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             rightAnimation.Pause();
             downAnimation.Pause();
             leftAnimation.Pause();
+        }
+
+        //Picks a random action
+        private void PickAction()
+        {
+
+            //Pick a random action (moving or idling)
+            state = (ENEMY_STATE)randomNumbers.Next(0, 5);
+
+            //Perform action operations
+            switch (state)
+            {
+
+                case ENEMY_STATE.IDLE:
+
+                    Idle();
+                    break;
+                case ENEMY_STATE.MOVING_UP:
+
+                    Move(CardinalDirection.NORTH);
+                    break;
+                case ENEMY_STATE.MOVING_RIGHT:
+
+                    Move(CardinalDirection.EAST);
+                    break;
+                case ENEMY_STATE.MOVING_DOWN:
+
+                    Move(CardinalDirection.SOUTH);
+                    break;
+                case ENEMY_STATE.MOVING_LEFT:
+
+                    Move(CardinalDirection.WEST);
+                    break;
+            }
+
+            //Reset the timer
+            ResetActionTimer();
+        }
+
+        //Switches to the idle state
+        private void Idle()
+        {
+
+            //Stop moving
+            Velocity = Vector2.Zero;
+
+            //Pause animation
+            PauseAnimations();
+        }
+
+        //Switches to a movement state
+        private void Move(CardinalDirection direction)
+        {
+
+            //Switch to the specified direction
+            Direction = direction;
+
+            //Set velocity in direction
+            Velocity = Direction.ToVector2() * MOVEMENT_SPEED;
+
+            //Play the animations
+            PlayAnimations();
+        }
+
+        //Resets the action timer
+        private void ResetActionTimer()
+        {
+
+            //Set the action timer to a random value within the seconds range
+            actionTimer = randomNumbers.Next(MINIMUM_ACTION_TIME, MAXIMUM_ACTION_TIME + 1);
         }
 
         //On collision
