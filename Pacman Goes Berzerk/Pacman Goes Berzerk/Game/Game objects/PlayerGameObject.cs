@@ -3,6 +3,7 @@ using Final_Project_Resources_2.Framework.Systems;
 using Microsoft.Graphics.Canvas;
 using Pacman_Goes_Berzerk.Framework;
 using Pacman_Goes_Berzerk.Framework.Input;
+using Pacman_Goes_Berzerk.Framework.Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         //The movement speed
         public static double SPEED = 100.0;
 
+        //The player index
+        PlayerRegistry players;
+
+        //The input manager
+        InputManager input;
+
+        //The input source
+        KeyboardInputSource keyboardInput;
+
         //The direction the player is looking in
         public CardinalDirection Direction { get; set; }
 
@@ -30,8 +40,19 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         bool[] movement;
 
         //Constructor
-        public PlayerGameObject(Vector2 position, GameObjectIndex container) : base(position, new BoxCollider(position, HITBOX_SIZE), container)
+        public PlayerGameObject(Vector2 position, GameObjectIndex container, PlayerRegistry players, InputManager inputManager, KeyboardFormat format) : base(position, new BoxCollider(position, HITBOX_SIZE), container)
         {
+
+            //Initialize keyboard input source
+            keyboardInput = new PlayerKeyboardInputSource(this, format);
+
+            //Register in subsystems
+            players.AddPlayer(this);
+            inputManager.registerInputSource(keyboardInput);
+
+            //Set subsystem references
+            this.players = players;
+            this.input = inputManager;
 
             //Get player images
             images = new List<CanvasBitmap>();
@@ -57,7 +78,10 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             //Attempt to match other object as a wall
             WallGameObject wall = otherCollisionHandler as WallGameObject;
 
-            //If other object is a wall
+            //Attempt to match other object as a wall
+            BulletGameObject bullet = otherCollisionHandler as BulletGameObject;
+
+            //If the other object is a wall
             if (wall != null)
             {
 
@@ -67,13 +91,37 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
                 //Move out of it's range
                 GameObjectHelper.resolveRectangularCollision(this, wallBoxCollider);
             }
+
+            //If the other object is a bullet
+            if (bullet != null)
+            {
+
+                //If the other object is an enemy bullet
+                if (bullet.Name == "enemy_bullet")
+                {
+
+                    //Destroy the bullet
+                    bullet.Destroy();
+
+                    //Destroy this object
+                    Destroy();
+                }
+            }
+
+            
         }
 
         //When the attack button is pressed
         public void Attack()
         {
 
+            //Create a new bullet
+            BulletGameObject newBullet = new BulletGameObject(Position, Container, 1000.0, 300);
+            newBullet.Name = "player_bullet";
+            newBullet.SetDirection(Direction);
 
+            //Register the bullet
+            Container.registerGameObject(newBullet);
         }
 
         //Sets movement status in a direction
@@ -156,8 +204,11 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         //When the player is deleted
         public override void Destroy()
         {
-            
             base.Destroy();
+
+            //Unregister from player and input systems
+            players.RemovePlayer(this);
+            input.removeInputSource(keyboardInput);
         }
     }
 }

@@ -3,6 +3,7 @@ using Final_Project_Resources_2.Framework.Systems;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Pacman_Goes_Berzerk.Framework.Input;
+using Pacman_Goes_Berzerk.Framework.Systems;
 using Pacman_Goes_Berzerk.Game;
 using Pacman_Goes_Berzerk.Game.Game_objects;
 using System;
@@ -44,6 +45,7 @@ namespace Pacman_Goes_Berzerk
         CollisionManager collisions;
         GameObjectIndex gameObjects;
         InputManager inputManager;
+        PlayerRegistry players;
 
         //The player object
         PlayerGameObject player;
@@ -65,6 +67,7 @@ namespace Pacman_Goes_Berzerk
             collisions = new CollisionManager();
             gameObjects = new GameObjectIndex(drawIndex, collisions);
             inputManager = new InputManager();
+            players = new PlayerRegistry();
 
             //Load the required images
             ImageManager.LoadImages(PacmanImagePaths.Images);
@@ -75,9 +78,8 @@ namespace Pacman_Goes_Berzerk
 
 
             //Create a player
-            player = new PlayerGameObject(new Vector2(200, 300), gameObjects);
+            player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
             gameObjects.registerGameObject(player);
-            inputManager.registerInputSource(new PlayerKeyboardInputSource(player, KeyboardFormat.WASD));
 
 
             //Create a dummy game object
@@ -90,7 +92,7 @@ namespace Pacman_Goes_Berzerk
             inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
 
             //Enable debug drawing
-            drawIndex.SetDebugDrawing(true);
+            drawIndex.SetDebugDrawing(false);
 
             //Add a wall
             WallGameObject wall = new WallGameObject(new Vector2(100, 100), new Vector2(150, 200));

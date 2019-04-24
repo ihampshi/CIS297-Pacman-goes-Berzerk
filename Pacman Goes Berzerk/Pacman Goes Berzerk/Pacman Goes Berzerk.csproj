@@ -116,7 +116,9 @@
     <Compile Include="Framework\Systems\DrawableIndex.cs" />
     <Compile Include="Framework\Systems\GameObjectIndex.cs" />
     <Compile Include="Framework\Systems\ImageManager.cs" />
+    <Compile Include="Framework\Systems\PlayerRegistry.cs" />
     <Compile Include="Framework\Vector2.cs" />
+    <Compile Include="Game\Game objects\BulletGameObject.cs" />
     <Compile Include="Game\Game objects\DummyGameObject.cs" />
     <Compile Include="Game\Game objects\GameObjectHelper.cs" />
     <Compile Include="Game\Game objects\PlayerGameObject.cs" />
