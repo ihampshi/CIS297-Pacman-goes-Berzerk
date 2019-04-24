@@ -20,6 +20,9 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         //The movement speed
         public static double SPEED = 100.0;
 
+        //The direction the player is looking in
+        public CardinalDirection Direction { get; set; }
+
         //The player images
         List<CanvasBitmap> images;
 
@@ -33,15 +36,18 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             //Get player images
             images = new List<CanvasBitmap>();
             images.Add(ImageManager.getImageByName("red_ghost_up"));
+            images.Add(ImageManager.getImageByName("red_ghost_right"));
             images.Add(ImageManager.getImageByName("red_ghost_down"));
             images.Add(ImageManager.getImageByName("red_ghost_left"));
-            images.Add(ImageManager.getImageByName("red_ghost_right"));
 
             //Initialize image
-            Image = images[3];
+            Image = images[1];
 
             //Initialize movement array
             movement = new bool[4] { false, false, false, false };
+
+            //Initialize direction
+            Direction = CardinalDirection.EAST;
         }
 
         //On collision
@@ -123,6 +129,28 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
 
             //Set new velocity
             Velocity = newVelocity;
+
+            //If moving in the new direction
+            if (moving)
+            {
+
+                //Update the direction
+                Direction = direction;
+
+                //Update the image
+                updateImage();
+            }
+        }
+
+        //Changes the player's image to match the direction
+        private void updateImage()
+        {
+
+            //Convert the direction to an integer
+            int numDirection = Direction.ToInt();
+
+            //Set image based on direction
+            Image = images[numDirection];
         }
 
         //When the player is deleted

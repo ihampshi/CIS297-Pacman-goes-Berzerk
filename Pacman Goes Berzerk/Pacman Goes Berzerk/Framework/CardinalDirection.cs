@@ -75,5 +75,13 @@ namespace Pacman_Goes_Berzerk.Framework
             //Return the result
             return result;
         }
+
+        //Convert the direction to an integer
+        public int ToInt()
+        {
+
+            //Return the numeric direction
+            return direction;
+        }
     }
 }

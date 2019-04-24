@@ -109,11 +109,6 @@ namespace Pacman_Goes_Berzerk
 
             //Update game objects
             gameObjects.Update(MILLISECONDS_PER_FRAME);
-
-            if (new Random().Next(1, 10000) < 100)
-            {
-                gameObjects.removeGameObject(player);
-            }
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
