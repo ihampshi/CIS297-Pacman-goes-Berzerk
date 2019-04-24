@@ -92,7 +92,7 @@ namespace Pacman_Goes_Berzerk
             inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
 
             //Enable debug drawing
-            drawIndex.SetDebugDrawing(false);
+            drawIndex.SetDebugDrawing(true);
 
             //Add a wall
             WallGameObject wall = new WallGameObject(new Vector2(100, 100), new Vector2(150, 200));
@@ -103,7 +103,7 @@ namespace Pacman_Goes_Berzerk
             gameObjects.registerGameObject(wall3);
 
             //Add an enemy object
-            EnemyGameObject enemy = new EnemyGameObject(new Vector2(400, 400), gameObjects, new Random());
+            EnemyGameObject enemy = new EnemyGameObject(new Vector2(300, 300), gameObjects, new Random());
             gameObjects.registerGameObject(enemy);
         }
 

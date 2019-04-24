@@ -29,7 +29,7 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         }
         
         //The size of the enemy collider
-        private static Vector2 ENEMY_SIZE = new Vector2(50, 50);
+        private static Vector2 ENEMY_SIZE = new Vector2(25, 25);
 
         //The length of the animations (in milliseconds)
         private static double ANIMATION_LENGTH = 400.0;
@@ -282,6 +282,10 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
 
                 //Move out of it's range
                 GameObjectHelper.resolveRectangularCollision(this, wallBoxCollider);
+
+                //Switch to idle state
+                Idle();
+                ResetActionTimer();
             }
 
             //If the other object is a bullet
