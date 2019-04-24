@@ -101,6 +101,10 @@ namespace Pacman_Goes_Berzerk
             gameObjects.registerGameObject(wall2);
             WallGameObject wall3 = new WallGameObject(new Vector2(300, 100), new Vector2(350, 200));
             gameObjects.registerGameObject(wall3);
+
+            //Add an enemy object
+            EnemyGameObject enemy = new EnemyGameObject(new Vector2(400, 400), gameObjects, new Random());
+            gameObjects.registerGameObject(enemy);
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)

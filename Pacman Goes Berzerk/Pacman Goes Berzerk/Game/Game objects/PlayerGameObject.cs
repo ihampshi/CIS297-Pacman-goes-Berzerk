@@ -107,8 +107,6 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
                     Destroy();
                 }
             }
-
-            
         }
 
         //When the attack button is pressed

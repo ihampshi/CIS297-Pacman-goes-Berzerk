@@ -120,6 +120,7 @@
     <Compile Include="Framework\Vector2.cs" />
     <Compile Include="Game\Game objects\BulletGameObject.cs" />
     <Compile Include="Game\Game objects\DummyGameObject.cs" />
+    <Compile Include="Game\Game objects\EnemyGameObject.cs" />
     <Compile Include="Game\Game objects\GameObjectHelper.cs" />
     <Compile Include="Game\Game objects\PlayerGameObject.cs" />
     <Compile Include="Game\Game objects\WallGameObject.cs" />
@@ -161,6 +162,15 @@
     <Content Include="Assets\Images\RedGhostLeftSprite.png" />
     <Content Include="Assets\Images\RedGhostRightSprite.png" />
     <Content Include="Assets\Images\RedGhostUpSprite.png" />
+    <Content Include="Assets\Images\SmallPacmanClosed.png" />
+    <Content Include="Assets\Images\SmallPacmanHalfOpenDown.png" />
+    <Content Include="Assets\Images\SmallPacmanHalfOpenLeft.png" />
+    <Content Include="Assets\Images\SmallPacmanHalfOpenRight.png" />
+    <Content Include="Assets\Images\SmallPacmanHalfOpenUp.png" />
+    <Content Include="Assets\Images\SmallPacmanOpenDown.png" />
+    <Content Include="Assets\Images\SmallPacmanOpenLeft.png" />
+    <Content Include="Assets\Images\SmallPacmanOpenRight.png" />
+    <Content Include="Assets\Images\SmallPacmanOpenUp.png" />
     <Content Include="Assets\Sounds\Berzerk.mp3" />
     <Content Include="Assets\Sounds\Player_must_not_escape.wav" />
     <Content Include="Assets\Sounds\Shoot_Galaga.mp3" />

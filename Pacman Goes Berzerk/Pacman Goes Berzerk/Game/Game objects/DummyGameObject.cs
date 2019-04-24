@@ -35,7 +35,7 @@ namespace Pacman_Goes_Berzerk.Game
             frames.Add(ImageManager.getImageByName("pacman_open_right"));
             frames.Add(ImageManager.getImageByName("pacman_halfopen_right"));
 
-            animation = new Animation(frames, 500);
+            animation = new Animation(frames, 200);
             animation.Play();
 
             //Initialize motion array
