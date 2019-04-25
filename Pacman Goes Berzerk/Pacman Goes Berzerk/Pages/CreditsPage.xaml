@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="583" Text="Credits:&#xD;&#xA;&#xD;&#xA;CIS 297: C#&#xD;&#xA;Professor Eric Charnesky&#xD;&#xA;&#xD;&#xA;Team:&#xD;&#xA;Isaac Hampshire&#xD;&#xA;Christine Li&#xD;&#xA;John Leone&#xD;&#xA;Justin Klump&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" VerticalAlignment="Center" Width="779" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" AcceptsReturn="True" FontSize="36" TextAlignment="Center">
+            <TextBox.RenderTransform>
+                <CompositeTransform Rotation="0.394"/>
+            </TextBox.RenderTransform>
+        </TextBox>
 
     </Grid>
 </Page>
