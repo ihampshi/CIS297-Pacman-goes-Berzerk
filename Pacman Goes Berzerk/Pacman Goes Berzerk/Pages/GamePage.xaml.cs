@@ -98,13 +98,15 @@ namespace Pacman_Goes_Berzerk
             //Enable debug drawing
             drawIndex.SetDebugDrawing(true);
 
-            //Add a wall
-            WallGameObject wall = new WallGameObject(new Vector2(100, 100), new Vector2(150, 200));
+            //Add walls
+            WallGameObject wall = new WallGameObject(new Vector2(0, 0), new Vector2(40, 500));
             gameObjects.registerGameObject(wall);
-            WallGameObject wall2 = new WallGameObject(new Vector2(150, 200), new Vector2(350, 250));
+            WallGameObject wall2 = new WallGameObject(new Vector2(0, 0), new Vector2(850, 20));
             gameObjects.registerGameObject(wall2);
-            WallGameObject wall3 = new WallGameObject(new Vector2(300, 100), new Vector2(350, 200));
+            WallGameObject wall3 = new WallGameObject(new Vector2(830, 0), new Vector2(850, 500));
             gameObjects.registerGameObject(wall3);
+            WallGameObject wall4 = new WallGameObject(new Vector2(0, 480), new Vector2(850, 500));
+            gameObjects.registerGameObject(wall4);
 
             //Add an enemy object
             EnemyGameObject enemy = new EnemyGameObject(new Vector2(300, 300), gameObjects, new Random());
@@ -115,11 +117,11 @@ namespace Pacman_Goes_Berzerk
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
 
-            //Check for collision events
-            collisions.CollisionTest();
-
             //Update game objects
             gameObjects.Update(MILLISECONDS_PER_FRAME);
+
+            //Check for collision events
+            collisions.CollisionTest();
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
