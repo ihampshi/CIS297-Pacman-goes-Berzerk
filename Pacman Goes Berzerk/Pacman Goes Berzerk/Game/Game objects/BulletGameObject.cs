@@ -58,6 +58,17 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         //On collision with a game object
         public override void OnCollision(ICollisionEventHandler otherCollisionHandler, ICollider otherCollider)
         {
+
+            //Attempt to match other object as a wall
+            WallGameObject wall = otherCollisionHandler as WallGameObject;
+
+            //If the other object is a wall
+            if (wall != null)
+            {
+
+                //Destroy this bullet
+                Destroy();
+            }
         }
 
         //Sets the direction of the bullet
