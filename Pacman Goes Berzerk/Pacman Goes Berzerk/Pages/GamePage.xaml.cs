@@ -82,11 +82,13 @@ namespace Pacman_Goes_Berzerk
             DrawableImage background = new DrawableImage(ImageManager.getImageByName("background1"), Vector2.Zero, false);
             drawIndex.AddDrawable(background);
 
-            //Create a player
+            //Create players
             player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
             gameObjects.registerGameObject(player);
 
-            player2 = new PlayerGameObject(new Vector2(400, 300), gameObjects, players, inputManager, KeyboardFormat.ARROWS);
+
+
+            player2 = new PlayerGameObject(new Vector2(250, 300), gameObjects, players, inputManager, KeyboardFormat.ARROWS);
             gameObjects.registerGameObject(player2);
 
             //Create a dummy game object
@@ -96,8 +98,7 @@ namespace Pacman_Goes_Berzerk
             //gameObjects.registerGameObject(testingObject);
 
             //Register the new object as an input listener
-            // inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
-
+            
             //Enable debug drawing
             drawIndex.SetDebugDrawing(true);
 
