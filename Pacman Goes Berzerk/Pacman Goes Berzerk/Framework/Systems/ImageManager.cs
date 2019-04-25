@@ -76,7 +76,7 @@ namespace Final_Project_Resources_2
                 timer.Start();
 
                 //Begin loading image
-                IAsyncOperation<CanvasBitmap> loadingOperation = CanvasBitmap.LoadAsync(canvasControl, path);
+                IAsyncOperation<CanvasBitmap> loadingOperation = CanvasBitmap.LoadAsync(canvasControl, path, 50);
 
                 //Until loading is completed or times out
                 while (loadingOperation.Status != AsyncStatus.Completed && timer.ElapsedMilliseconds < LOADING_TIMEOUT)

@@ -100,6 +100,9 @@ namespace Final_Project_Resources_2
         //Triggered upon a collision event
         abstract public void OnCollision(ICollisionEventHandler otherCollisionHandler, ICollider otherCollider);
 
+        //Triggered when the sprite should be removed
+        abstract public void Destroy();
+
         //Triggered upon a change in position
         virtual public void OnChangePosition()
         {
