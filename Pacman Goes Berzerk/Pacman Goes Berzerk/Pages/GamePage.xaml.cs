@@ -6,6 +6,7 @@ using Pacman_Goes_Berzerk.Framework.Input;
 using Pacman_Goes_Berzerk.Framework.Systems;
 using Pacman_Goes_Berzerk.Game;
 using Pacman_Goes_Berzerk.Game.Game_objects;
+using Pacman_Goes_Berzerk.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,6 +52,12 @@ namespace Pacman_Goes_Berzerk
         PlayerGameObject player;
         PlayerGameObject player2;
 
+        //The random number generator
+        Random randomNumbers;
+
+        //Random enemy spawn timer
+        double spawnTime;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -63,12 +70,15 @@ namespace Pacman_Goes_Berzerk
             //TODO: The image manager may fail for multiple pages
             ImageManager.Initialize(sender);
 
+            //Initialize random number generator
+            randomNumbers = new Random();
+
             //Initialize game systems
             drawIndex = new DrawableIndex();
             collisions = new CollisionManager();
             gameObjects = new GameObjectIndex(drawIndex, collisions);
             inputManager = new InputManager();
-            players = new PlayerRegistry();
+            players = new PlayerRegistry(randomNumbers);
 
             //Load the required images
             ImageManager.LoadImages(PacmanImagePaths.Images);
@@ -100,7 +110,7 @@ namespace Pacman_Goes_Berzerk
             //Register the new object as an input listener
             
             //Enable debug drawing
-            drawIndex.SetDebugDrawing(true);
+            drawIndex.SetDebugDrawing(false);
 
             //Add walls
             WallGameObject wall = new WallGameObject(new Vector2(0, 0), new Vector2(40, 500));
@@ -111,6 +121,14 @@ namespace Pacman_Goes_Berzerk
             gameObjects.registerGameObject(wall3);
             WallGameObject wall4 = new WallGameObject(new Vector2(0, 480), new Vector2(850, 500));
             gameObjects.registerGameObject(wall4);
+            WallGameObject wall5 = new WallGameObject(new Vector2(185, 165), new Vector2(200, 330));
+            gameObjects.registerGameObject(wall5);
+            WallGameObject wall6 = new WallGameObject(new Vector2(185, 165), new Vector2(685, 180));
+            gameObjects.registerGameObject(wall6);
+            WallGameObject wall7 = new WallGameObject(new Vector2(670, 165), new Vector2(685, 500));
+            gameObjects.registerGameObject(wall7);
+            WallGameObject wall8 = new WallGameObject(new Vector2(345, 320), new Vector2(525, 330));
+            gameObjects.registerGameObject(wall8);
 
             WallGameObject wall5 = new WallGameObject(new Vector2(180, 170), new Vector2(200, 330));
             gameObjects.registerGameObject(wall5);
@@ -125,6 +143,7 @@ namespace Pacman_Goes_Berzerk
             EnemyGameObject enemy = new EnemyGameObject(new Vector2(700, 120), gameObjects, new Random());
             enemy.Target = player;
             gameObjects.registerGameObject(enemy);
+
 
             EnemyGameObject enemy1 = new EnemyGameObject(new Vector2(400, 200), gameObjects, new Random());
             enemy1.Target = player;
@@ -141,6 +160,26 @@ namespace Pacman_Goes_Berzerk
             EnemyGameObject enemy4 = new EnemyGameObject(new Vector2(750, 400), gameObjects, new Random());
             enemy4.Target = player;
             gameObjects.registerGameObject(enemy4);
+
+            //If there are players
+            if (!players.IsEmpty())
+            {
+
+                //Get a random player
+                PlayerGameObject randomPlayer = players.GetRandom() as PlayerGameObject;
+
+                //Assign a random player as a target
+                enemy.Target = randomPlayer;
+            }
+        }
+
+        //Resets the enemy spawn timer
+        public void ResetEnemySpawnTimer()
+        {
+
+            //Set timer
+            spawnTime = randomNumbers.Next(1000, 3000);
+
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
@@ -151,6 +190,28 @@ namespace Pacman_Goes_Berzerk
 
             //Check for collision events
             collisions.CollisionTest();
+
+            //Count down spawn timer
+            spawnTime -= MILLISECONDS_PER_FRAME;
+
+            //If timer ended
+            if (spawnTime <= 0.0)
+            {
+
+                //Spawn an enemy
+                SpawnEnemy();
+
+                //Reset the timer
+                ResetEnemySpawnTimer();
+            }
+
+            //If all players dead
+            if (players.IsEmpty())
+            {
+
+                //Jump to main menu TODO (crashing due to a thread error)
+                //this.Frame.Navigate(typeof(MainMenuPage));
+            }
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)

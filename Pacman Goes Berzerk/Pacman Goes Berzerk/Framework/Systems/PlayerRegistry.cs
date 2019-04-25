@@ -15,12 +15,18 @@ namespace Pacman_Goes_Berzerk.Framework.Systems
         //The list of player objects
         List<GameObject> playerObjects;
 
+        //Random number generator
+        Random randomNumbers;
+
         //Constructor
-        public PlayerRegistry()
+        public PlayerRegistry(Random randomNumbers)
         {
 
             //Initialize player list
             playerObjects = new List<GameObject>();
+
+            //Assign random numbers
+            this.randomNumbers = randomNumbers;
         }
 
         //Adds a player to the list
@@ -45,6 +51,28 @@ namespace Pacman_Goes_Berzerk.Framework.Systems
 
             //Return whether the list is empty
             return playerObjects.Count == 0;
+        }
+
+        //Returns a random player
+        public GameObject GetRandom()
+        {
+
+            //The result
+            GameObject selectedObject = null;
+
+            //If players are contained
+            if (playerObjects.Count > 0)
+            {
+
+                //Generate random index
+                int index = randomNumbers.Next(0, playerObjects.Count);
+
+                //Select at index
+                selectedObject = playerObjects[index];
+            }
+
+            //Return selected object
+            return selectedObject;
         }
     }
 }
