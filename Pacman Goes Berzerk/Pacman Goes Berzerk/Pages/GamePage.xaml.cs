@@ -130,15 +130,6 @@ namespace Pacman_Goes_Berzerk
             WallGameObject wall8 = new WallGameObject(new Vector2(345, 320), new Vector2(525, 330));
             gameObjects.registerGameObject(wall8);
 
-            WallGameObject wall5 = new WallGameObject(new Vector2(180, 170), new Vector2(200, 330));
-            gameObjects.registerGameObject(wall5);
-
-            WallGameObject wall6 = new WallGameObject(new Vector2(180, 170), new Vector2(690, 180));
-            gameObjects.registerGameObject(wall6);
-
-            WallGameObject wall7 = new WallGameObject(new Vector2(670, 180), new Vector2(690, 500));
-            gameObjects.registerGameObject(wall7);
-
             //Add an enemy object
             EnemyGameObject enemy = new EnemyGameObject(new Vector2(700, 120), gameObjects, new Random());
             enemy.Target = player;
@@ -211,6 +202,29 @@ namespace Pacman_Goes_Berzerk
 
                 //Jump to main menu TODO (crashing due to a thread error)
                 //this.Frame.Navigate(typeof(MainMenuPage));
+            }
+        }
+
+        //Spawns an enemy
+        public void SpawnEnemy()
+        {
+
+            //Generate a random position
+            Vector2 randomPosition = new Vector2(randomNumbers.Next(30, 500), randomNumbers.Next(30, 500));
+
+            //Create a new enemy
+            EnemyGameObject enemy = new EnemyGameObject(randomPosition, gameObjects, randomNumbers);
+            gameObjects.registerGameObject(enemy);
+
+            //If there are players
+            if (!players.IsEmpty())
+            {
+
+                //Get a random player
+                PlayerGameObject randomPlayer = players.GetRandom() as PlayerGameObject;
+
+                //Assign a random player as a target
+                enemy.Target = randomPlayer;
             }
         }
 
