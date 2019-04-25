@@ -20,18 +20,11 @@ namespace Pacman_Goes_Berzerk.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class InfoPage : Page
+    public sealed partial class CreditsPage : Page
     {
-        public InfoPage()
+        public CreditsPage()
         {
             this.InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            //Go to menu page
-            this.Frame.Navigate(typeof(MainMenuPage));
         }
     }
 }

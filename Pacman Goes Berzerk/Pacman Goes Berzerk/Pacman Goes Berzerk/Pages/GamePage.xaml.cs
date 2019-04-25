@@ -59,7 +59,7 @@ namespace Pacman_Goes_Berzerk
         {
 
             //Initialize image loader with canvas
-            //TODO: The image manager may fail for multiple pages
+            //TODO: The image manager may fail for multiple frames
             ImageManager.Initialize(sender);
 
             //Initialize game systems
@@ -76,10 +76,6 @@ namespace Pacman_Goes_Berzerk
             Window.Current.CoreWindow.KeyDown += canvas_KeyDown;
             Window.Current.CoreWindow.KeyUp += canvas_KeyUp;
 
-
-            //Add background image
-            DrawableImage background = new DrawableImage(ImageManager.getImageByName("background1"), Vector2.Zero, false);
-            drawIndex.AddDrawable(background);
 
             //Create a player
             player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
@@ -98,15 +94,13 @@ namespace Pacman_Goes_Berzerk
             //Enable debug drawing
             drawIndex.SetDebugDrawing(true);
 
-            //Add walls
-            WallGameObject wall = new WallGameObject(new Vector2(0, 0), new Vector2(40, 500));
+            //Add a wall
+            WallGameObject wall = new WallGameObject(new Vector2(100, 100), new Vector2(150, 200));
             gameObjects.registerGameObject(wall);
-            WallGameObject wall2 = new WallGameObject(new Vector2(0, 0), new Vector2(850, 20));
+            WallGameObject wall2 = new WallGameObject(new Vector2(150, 200), new Vector2(350, 250));
             gameObjects.registerGameObject(wall2);
-            WallGameObject wall3 = new WallGameObject(new Vector2(830, 0), new Vector2(850, 500));
+            WallGameObject wall3 = new WallGameObject(new Vector2(300, 100), new Vector2(350, 200));
             gameObjects.registerGameObject(wall3);
-            WallGameObject wall4 = new WallGameObject(new Vector2(0, 480), new Vector2(850, 500));
-            gameObjects.registerGameObject(wall4);
 
             //Add an enemy object
             EnemyGameObject enemy = new EnemyGameObject(new Vector2(300, 300), gameObjects, new Random());
@@ -117,11 +111,11 @@ namespace Pacman_Goes_Berzerk
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
 
-            //Update game objects
-            gameObjects.Update(MILLISECONDS_PER_FRAME);
-
             //Check for collision events
             collisions.CollisionTest();
+
+            //Update game objects
+            gameObjects.Update(MILLISECONDS_PER_FRAME);
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -129,6 +123,8 @@ namespace Pacman_Goes_Berzerk
 
             //Draw all elements within the draw list
             drawIndex.Draw(sender, args);
+
+            args.DrawingSession.DrawText("Not much is here yet, but there's a fair amount of code beneath.", new System.Numerics.Vector2(0, 0), Colors.Yellow);
         }
 
         private void canvas_KeyDown(CoreWindow sender, KeyEventArgs e)

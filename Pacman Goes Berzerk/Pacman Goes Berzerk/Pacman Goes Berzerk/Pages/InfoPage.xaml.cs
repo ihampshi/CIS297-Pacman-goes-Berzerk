@@ -26,12 +26,5 @@ namespace Pacman_Goes_Berzerk.Pages
         {
             this.InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            //Go to menu page
-            this.Frame.Navigate(typeof(MainMenuPage));
-        }
     }
 }

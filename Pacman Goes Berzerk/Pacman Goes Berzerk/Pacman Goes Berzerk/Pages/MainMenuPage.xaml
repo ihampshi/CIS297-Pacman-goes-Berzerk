@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="Pacman_Goes_Berzerk.Pages.MainMenuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pacman_Goes_Berzerk.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,728,0,0" Height="72" Width="260" RequestedTheme="Light" FontSize="36" Click="StartButton_Click"/>
+        <Button x:Name="InfoButton" Content="Info" HorizontalAlignment="Center" VerticalAlignment="Top" Height="72" Width="260" RequestedTheme="Light" FontSize="36" Margin="0,600,0,0" Click="InfoButton_Click"/>
+        <TextBox x:Name="TitleTextBox" HorizontalAlignment="Center" Height="155" Margin="0,345,0,0" Text="Pacman Goes Berzerk" VerticalAlignment="Top" Width="1070" FontSize="100" FontWeight="Bold" FontStyle="Oblique" FontStretch="SemiExpanded" TextWrapping="NoWrap" CharacterSpacing="30" TextAlignment="Center" FontFamily="Bauhaus 93"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="35" Margin="1260,10,0,0" Text="CIS 297 Winter 2019" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" FontSize="24" FontFamily="Segoe UI"/>
+
+    </Grid>
+</Page>

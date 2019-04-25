@@ -34,7 +34,6 @@ namespace Pacman_Goes_Berzerk.Game
             new Tuple<string, string> ("red_ghost_left", "Assets/Images/RedGhostLeftSprite.png" ),
             new Tuple<string, string> ("red_ghost_right", "Assets/Images/RedGhostRightSprite.png" ),
             new Tuple<string, string> ("bullet", "Assets/Images/RedBullet.png" ),
-            new Tuple<string, string> ("background1", "Assets/Images/background1_smaller.png" ),
         };
     }
 }

@@ -16,7 +16,7 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
     {
 
         //The collider size
-        public static Vector2 HITBOX_SIZE = new Vector2(25, 25);
+        public static Vector2 HITBOX_SIZE = new Vector2(50, 50);
 
         //The movement speed
         public static double SPEED = 100.0;

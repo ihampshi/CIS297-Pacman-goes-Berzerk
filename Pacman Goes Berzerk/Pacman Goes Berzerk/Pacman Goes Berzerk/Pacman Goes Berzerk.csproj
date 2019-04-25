@@ -148,8 +148,6 @@
     <None Include="Pacman Goes Berzerk_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Images\background1.jpg" />
-    <Content Include="Assets\Images\background1_smaller.png" />
     <Content Include="Assets\Images\PacmanSpriteClosed.png" />
     <Content Include="Assets\Images\PacmanSpriteHalfOpenDown.png" />
     <Content Include="Assets\Images\PacmanSpriteHalfOpenLeft.png" />
