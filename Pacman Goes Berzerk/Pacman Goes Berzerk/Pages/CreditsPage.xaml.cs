@@ -26,5 +26,10 @@ namespace Pacman_Goes_Berzerk.Pages
         {
             this.InitializeComponent();
         }
+
+        private void CreditsBackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -96,9 +96,10 @@ namespace Pacman_Goes_Berzerk
             player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
             gameObjects.registerGameObject(player);
 
+
+
             player2 = new PlayerGameObject(new Vector2(250, 300), gameObjects, players, inputManager, KeyboardFormat.ARROWS);
             gameObjects.registerGameObject(player2);
-
 
             //Create a dummy game object
             //DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45), gameObjects);
@@ -107,8 +108,7 @@ namespace Pacman_Goes_Berzerk
             //gameObjects.registerGameObject(testingObject);
 
             //Register the new object as an input listener
-            //inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
-
+            
             //Enable debug drawing
             drawIndex.SetDebugDrawing(false);
 
@@ -130,25 +130,36 @@ namespace Pacman_Goes_Berzerk
             WallGameObject wall8 = new WallGameObject(new Vector2(345, 320), new Vector2(525, 330));
             gameObjects.registerGameObject(wall8);
 
+            WallGameObject wall5 = new WallGameObject(new Vector2(180, 170), new Vector2(200, 330));
+            gameObjects.registerGameObject(wall5);
+
+            WallGameObject wall6 = new WallGameObject(new Vector2(180, 170), new Vector2(690, 180));
+            gameObjects.registerGameObject(wall6);
+
+            WallGameObject wall7 = new WallGameObject(new Vector2(670, 180), new Vector2(690, 500));
+            gameObjects.registerGameObject(wall7);
+
             //Add an enemy object
-            EnemyGameObject enemy = new EnemyGameObject(new Vector2(300, 300), gameObjects, new Random());
+            EnemyGameObject enemy = new EnemyGameObject(new Vector2(700, 120), gameObjects, new Random());
             enemy.Target = player;
             gameObjects.registerGameObject(enemy);
 
-            //Set the random enemy spawn timer
-            ResetEnemySpawnTimer();
-        }
 
-        //Spawns an enemy
-        public void SpawnEnemy()
-        {
+            EnemyGameObject enemy1 = new EnemyGameObject(new Vector2(400, 200), gameObjects, new Random());
+            enemy1.Target = player;
+            gameObjects.registerGameObject(enemy1);
 
-            //Generate a random position
-            Vector2 randomPosition = new Vector2(randomNumbers.Next(30, 500), randomNumbers.Next(30, 500));
+            EnemyGameObject enemy2 = new EnemyGameObject(new Vector2(250, 300), gameObjects, new Random());
+            enemy2.Target = player;
+            gameObjects.registerGameObject(enemy2);
 
-            //Create a new enemy
-            EnemyGameObject enemy = new EnemyGameObject(randomPosition, gameObjects, randomNumbers);
-            gameObjects.registerGameObject(enemy);
+            EnemyGameObject enemy3 = new EnemyGameObject(new Vector2(100, 350), gameObjects, new Random());
+            enemy3.Target = player;
+            gameObjects.registerGameObject(enemy3);
+
+            EnemyGameObject enemy4 = new EnemyGameObject(new Vector2(750, 400), gameObjects, new Random());
+            enemy4.Target = player;
+            gameObjects.registerGameObject(enemy4);
 
             //If there are players
             if (!players.IsEmpty())
@@ -168,6 +179,7 @@ namespace Pacman_Goes_Berzerk
 
             //Set timer
             spawnTime = randomNumbers.Next(1000, 3000);
+
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
