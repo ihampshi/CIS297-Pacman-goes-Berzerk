@@ -19,6 +19,11 @@
                 <CompositeTransform TranslateY="-100"/>
             </TextBlock.RenderTransform>
         </TextBlock>
+        <Button x:Name="CreditsButton" Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="58" Width="158" RenderTransformOrigin="0,0" FontFamily="Bauhaus 93">
+            <Button.RenderTransform>
+                <CompositeTransform TranslateY="200"/>
+            </Button.RenderTransform>
+        </Button>
 
     </Grid>
 </Page>

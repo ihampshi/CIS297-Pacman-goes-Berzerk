@@ -49,6 +49,7 @@ namespace Pacman_Goes_Berzerk
 
         //The player object
         PlayerGameObject player;
+        PlayerGameObject player2;
 
         public MainPage()
         {
@@ -85,15 +86,17 @@ namespace Pacman_Goes_Berzerk
             player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
             gameObjects.registerGameObject(player);
 
+            player2 = new PlayerGameObject(new Vector2(400, 300), gameObjects, players, inputManager, KeyboardFormat.ARROWS);
+            gameObjects.registerGameObject(player2);
 
             //Create a dummy game object
-            DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45), gameObjects);
+            //DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45), gameObjects);
 
             //Register the new object in the game object index
-            gameObjects.registerGameObject(testingObject);
+            //gameObjects.registerGameObject(testingObject);
 
             //Register the new object as an input listener
-            inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
+            // inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
 
             //Enable debug drawing
             drawIndex.SetDebugDrawing(true);
@@ -108,10 +111,35 @@ namespace Pacman_Goes_Berzerk
             WallGameObject wall4 = new WallGameObject(new Vector2(0, 480), new Vector2(850, 500));
             gameObjects.registerGameObject(wall4);
 
+            WallGameObject wall5 = new WallGameObject(new Vector2(180, 170), new Vector2(200, 330));
+            gameObjects.registerGameObject(wall5);
+
+            WallGameObject wall6 = new WallGameObject(new Vector2(180, 170), new Vector2(690, 180));
+            gameObjects.registerGameObject(wall6);
+
+            WallGameObject wall7 = new WallGameObject(new Vector2(670, 180), new Vector2(690, 500));
+            gameObjects.registerGameObject(wall7);
+
             //Add an enemy object
-            EnemyGameObject enemy = new EnemyGameObject(new Vector2(300, 300), gameObjects, new Random());
+            EnemyGameObject enemy = new EnemyGameObject(new Vector2(700, 120), gameObjects, new Random());
             enemy.Target = player;
             gameObjects.registerGameObject(enemy);
+
+            EnemyGameObject enemy1 = new EnemyGameObject(new Vector2(400, 200), gameObjects, new Random());
+            enemy1.Target = player;
+            gameObjects.registerGameObject(enemy1);
+
+            EnemyGameObject enemy2 = new EnemyGameObject(new Vector2(250, 300), gameObjects, new Random());
+            enemy2.Target = player;
+            gameObjects.registerGameObject(enemy2);
+
+            EnemyGameObject enemy3 = new EnemyGameObject(new Vector2(100, 350), gameObjects, new Random());
+            enemy3.Target = player;
+            gameObjects.registerGameObject(enemy3);
+
+            EnemyGameObject enemy4 = new EnemyGameObject(new Vector2(750, 400), gameObjects, new Random());
+            enemy4.Target = player;
+            gameObjects.registerGameObject(enemy4);
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)

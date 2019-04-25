@@ -8,11 +8,22 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="583" Text="Credits:&#xD;&#xA;&#xD;&#xA;CIS 297: C#&#xD;&#xA;Professor Eric Charnesky&#xD;&#xA;&#xD;&#xA;Team:&#xD;&#xA;Isaac Hampshire&#xD;&#xA;Christine Li&#xD;&#xA;John Leone&#xD;&#xA;Justin Klump&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" VerticalAlignment="Center" Width="779" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" AcceptsReturn="True" FontSize="36" TextAlignment="Center">
-            <TextBox.RenderTransform>
-                <CompositeTransform Rotation="0.394"/>
-            </TextBox.RenderTransform>
-        </TextBox>
+        <Button x:Name="CreditsBackButton" Content="Back to Main Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="58" Width="158" RenderTransformOrigin="0,0" FontFamily="Bauhaus 93">
+            <Button.RenderTransform>
+                <CompositeTransform TranslateY="200"/>
+            </Button.RenderTransform>
+        </Button>
 
+        <TextBlock HorizontalAlignment="Center" Text="CIS 279: C#                              Professor Eric Charnesky" TextWrapping="Wrap" VerticalAlignment="Center" Height="217" Width="357" MaxLines="20" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" FontSize="48" Margin="0,0,0,0">
+            <TextBlock.RenderTransform>
+                <CompositeTransform TranslateY="-200"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Center" Text="Team Members:                       Isaac Hamshire                          Christine Li                      John Leone                 Justin Klump" TextWrapping="Wrap" VerticalAlignment="Center" Height="198" Width="232" MaxLines="20" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" FontSize="20" Margin="0,0,0,0">
+            <TextBlock.RenderTransform>
+                <CompositeTransform TranslateY="50"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Page>

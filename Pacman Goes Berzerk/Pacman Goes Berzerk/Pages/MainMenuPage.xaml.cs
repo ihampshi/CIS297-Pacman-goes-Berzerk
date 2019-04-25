@@ -45,6 +45,13 @@ namespace Pacman_Goes_Berzerk.Pages
                 //Go to help page
                 this.Frame.Navigate(typeof(InfoPage));
             }
+
+            else if (button.Name == "CreditsButton")
+            {
+
+                //Go to help page
+                this.Frame.Navigate(typeof(CreditsPage));
+            }
         }
     }
 }
