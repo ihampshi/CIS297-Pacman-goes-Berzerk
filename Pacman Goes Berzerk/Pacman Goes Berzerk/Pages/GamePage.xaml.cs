@@ -59,7 +59,7 @@ namespace Pacman_Goes_Berzerk
         {
 
             //Initialize image loader with canvas
-            //TODO: The image manager may fail for multiple frames
+            //TODO: The image manager may fail for multiple pages
             ImageManager.Initialize(sender);
 
             //Initialize game systems
@@ -76,6 +76,10 @@ namespace Pacman_Goes_Berzerk
             Window.Current.CoreWindow.KeyDown += canvas_KeyDown;
             Window.Current.CoreWindow.KeyUp += canvas_KeyUp;
 
+
+            //Add background image
+            DrawableImage background = new DrawableImage(ImageManager.getImageByName("background1"), Vector2.Zero, false);
+            drawIndex.AddDrawable(background);
 
             //Create a player
             player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
@@ -123,8 +127,6 @@ namespace Pacman_Goes_Berzerk
 
             //Draw all elements within the draw list
             drawIndex.Draw(sender, args);
-
-            args.DrawingSession.DrawText("Not much is here yet, but there's a fair amount of code beneath.", new System.Numerics.Vector2(0, 0), Colors.Yellow);
         }
 
         private void canvas_KeyDown(CoreWindow sender, KeyEventArgs e)
