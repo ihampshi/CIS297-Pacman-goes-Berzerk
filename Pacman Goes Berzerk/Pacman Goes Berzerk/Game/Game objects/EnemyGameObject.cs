@@ -87,9 +87,12 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         public EnemyGameObject(Vector2 position, GameObjectIndex objectIndex, Random randomNumbers) : base(position, new BoxCollider(position, ENEMY_SIZE), objectIndex)
         {
 
+            //Set the player name
+            Name = "enemy";
+
             //Set the random number generator
             this.randomNumbers = randomNumbers;
-
+            
             //Initialize animation frames
             List<CanvasBitmap> upAnimationFrames = new List<CanvasBitmap>()
             {
@@ -301,7 +304,7 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         {
 
             //If target is destroyed
-            if (!Target.Alive)
+            if (Target != null && !Target.Alive)
             {
 
                 //Remove the target reference

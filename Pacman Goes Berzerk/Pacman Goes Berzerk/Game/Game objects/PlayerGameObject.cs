@@ -81,6 +81,9 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
             //Attempt to match other object as a wall
             BulletGameObject bullet = otherCollisionHandler as BulletGameObject;
 
+            //Attempt to match other object as an enemy
+            EnemyGameObject enemy = otherCollisionHandler as EnemyGameObject;
+
             //If the other object is a wall
             if (wall != null)
             {
@@ -102,6 +105,20 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
 
                     //Destroy the bullet
                     bullet.Destroy();
+
+                    //Destroy this object
+                    Destroy();
+                }
+            }
+
+            //If the other object is an enemy
+            if (enemy != null)
+            {
+
+                //If the other object is an enemy bullet
+                if (enemy.Name == "enemy")
+                {
+
 
                     //Destroy this object
                     Destroy();
