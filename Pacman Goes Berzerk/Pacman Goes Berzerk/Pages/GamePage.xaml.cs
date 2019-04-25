@@ -109,7 +109,7 @@ namespace Pacman_Goes_Berzerk
 
             //Register the new object as an input listener
             
-            //Enable debug drawing
+            //Disable debug drawing
             drawIndex.SetDebugDrawing(false);
 
             //Add walls
