@@ -27,9 +27,9 @@ namespace Pacman_Goes_Berzerk.Pages
             this.InitializeComponent();
         }
 
-        private void CreditsBackButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(MainMenuPage));
         }
     }
 }
