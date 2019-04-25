@@ -35,10 +35,10 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         private static double ANIMATION_LENGTH = 400.0;
 
         //The speed that the enemy can move at (in pixels per second)
-        private static double MOVEMENT_SPEED = 50;
+        private static double MOVEMENT_SPEED = 80;
 
         //The percent chance of performing a random action
-        private static int RANDOM_ACTION_PERCENT = 30;
+        private static int RANDOM_ACTION_PERCENT = 5;
 
         //The number of milliseconds that the AI can perform a given action
         private static int MINIMUM_ACTION_TIME = 1000;
