@@ -49,6 +49,7 @@ namespace Pacman_Goes_Berzerk
 
         //The player object
         PlayerGameObject player;
+        PlayerGameObject player2;
 
         public MainPage()
         {
@@ -81,19 +82,22 @@ namespace Pacman_Goes_Berzerk
             DrawableImage background = new DrawableImage(ImageManager.getImageByName("background1"), Vector2.Zero, false);
             drawIndex.AddDrawable(background);
 
-            //Create a player
+            //Create players
             player = new PlayerGameObject(new Vector2(200, 300), gameObjects, players, inputManager, KeyboardFormat.WASD);
             gameObjects.registerGameObject(player);
 
+            player2 = new PlayerGameObject(new Vector2(250, 300), gameObjects, players, inputManager, KeyboardFormat.ARROWS);
+            gameObjects.registerGameObject(player2);
+
 
             //Create a dummy game object
-            DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45), gameObjects);
+            //DummyGameObject testingObject = new DummyGameObject(new Vector2(100, 100), new Vector2(45, 45), gameObjects);
 
             //Register the new object in the game object index
-            gameObjects.registerGameObject(testingObject);
+            //gameObjects.registerGameObject(testingObject);
 
             //Register the new object as an input listener
-            inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
+            //inputManager.registerInputSource(new PlayerKeyboardInputSource(testingObject, KeyboardFormat.ARROWS));
 
             //Enable debug drawing
             drawIndex.SetDebugDrawing(true);
