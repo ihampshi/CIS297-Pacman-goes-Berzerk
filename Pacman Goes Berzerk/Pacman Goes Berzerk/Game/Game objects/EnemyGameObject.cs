@@ -38,7 +38,7 @@ namespace Pacman_Goes_Berzerk.Game.Game_objects
         private static double MOVEMENT_SPEED = 50;
 
         //The percent chance of performing a random action
-        private static int RANDOM_ACTION_PERCENT = 50;
+        private static int RANDOM_ACTION_PERCENT = 30;
 
         //The number of milliseconds that the AI can perform a given action
         private static int MINIMUM_ACTION_TIME = 1000;

@@ -131,7 +131,7 @@ namespace Pacman_Goes_Berzerk
             gameObjects.registerGameObject(wall8);
 
             //Add an enemy object
-            EnemyGameObject enemy = new EnemyGameObject(new Vector2(700, 120), gameObjects, new Random());
+            /*EnemyGameObject enemy = new EnemyGameObject(new Vector2(700, 120), gameObjects, new Random());
             enemy.Target = player;
             gameObjects.registerGameObject(enemy);
 
@@ -150,18 +150,7 @@ namespace Pacman_Goes_Berzerk
 
             EnemyGameObject enemy4 = new EnemyGameObject(new Vector2(750, 400), gameObjects, new Random());
             enemy4.Target = player;
-            gameObjects.registerGameObject(enemy4);
-
-            //If there are players
-            if (!players.IsEmpty())
-            {
-
-                //Get a random player
-                PlayerGameObject randomPlayer = players.GetRandom() as PlayerGameObject;
-
-                //Assign a random player as a target
-                enemy.Target = randomPlayer;
-            }
+            gameObjects.registerGameObject(enemy4);*/
         }
 
         //Resets the enemy spawn timer
