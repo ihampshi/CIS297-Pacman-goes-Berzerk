@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Button x:Name="backButton" Content="Back to menu" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="58" Width="158" RenderTransformOrigin="0,0" FontFamily="Bauhaus 93"/>
     </Grid>
 </Page>

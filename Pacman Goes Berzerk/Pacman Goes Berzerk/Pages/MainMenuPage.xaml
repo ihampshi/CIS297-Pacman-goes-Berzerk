@@ -8,6 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="58" Width="158" RenderTransformOrigin="0,0" FontFamily="Bauhaus 93"/>
+        <Button x:Name="helpButton" Content="Information" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="58" Width="158" RenderTransformOrigin="0,0" FontFamily="Bauhaus 93">
+            <Button.RenderTransform>
+                <CompositeTransform TranslateY="100"/>
+            </Button.RenderTransform>
+        </Button>
+        <TextBlock x:Name="TitleTextBox" HorizontalAlignment="Center" Height="162" Text="Pacman Goes Berzerk" TextWrapping="Wrap" VerticalAlignment="Center" Width="804" FontSize="72" FontFamily="Bauhaus 93" FontWeight="Bold" FontStretch="Expanded" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <CompositeTransform TranslateY="-100"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
     </Grid>
 </Page>

@@ -26,5 +26,25 @@ namespace Pacman_Goes_Berzerk.Pages
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button button = sender as Button;
+
+            if (button.Name == "playButton")
+            {
+
+                //Go to game page
+                this.Frame.Navigate(typeof(MainPage));
+            }
+
+            else if (button.Name == "helpButton")
+            {
+
+                //Go to help page
+                this.Frame.Navigate(typeof(InfoPage));
+            }
+        }
     }
 }
